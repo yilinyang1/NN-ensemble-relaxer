@@ -1,0 +1,28 @@
+Step 0: get groud truth data 
+Step 0: groud truth data calculation done 
+max force for each configuration: 
+[2.677, 2.466, 2.508, 2.716, 2.761, 2.73, 2.623, 2.289, 2.721, 2.685] 
+Step 0: start training 
+Step 0: training done
+Step 0: start NN relaxation 
+Step 0: NN relaxation done 
+Step 1: get groud truth data 
+Step 1: groud truth data calculation done 
+max force for each configuration: 
+[1.708, 1.087, 1.532, 1.752, 1.356, 1.641, 1.301, 1.15, 1.435, 1.477] 
+Step 1: start training 
+Step 1: training done
+Step 1: start NN relaxation 
+Step 1: NN relaxation done 
+Step 2: get groud truth data 
+Step 2: groud truth data calculation done 
+max force for each configuration: 
+[0.457, 0.035, 0.246, 0.351, 0.368, 0.238, 0.217, 0.028, 0.234, 0.254] 
+Step 2: start training 
+Step 2: training done
+Step 2: start NN relaxation 
+Step 2: NN relaxation done 
+Step 3: get groud truth data 
+Step 3: groud truth data calculation done 
+max force for each configuration: 
+[0.032, 0.031, 0.029, 0.029, 0.029, 0.029, 0.036, 0.029] 
