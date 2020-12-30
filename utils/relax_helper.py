@@ -13,9 +13,9 @@ import torch
 
 
 class Relaxer_Helper():
-    def __init__(self, relax_db_path, train_db_path, step_model_path, fp_params, ensemble_size, elements):
-        layer_nodes = [50, 50] 
-        activations = ['tanh', 'tanh']
+    def __init__(self, relax_db_path, train_db_path, step_model_path, fp_params, ensemble_size, elements, nn_params, alpha):
+        layer_nodes = nn_params['layer_nodes']
+        activations = nn_params['activations']
         n_fp = len(fp_params[elements[0]]['i'])
         model_list = []
         for m in range(ensemble_size):
@@ -26,10 +26,11 @@ class Relaxer_Helper():
         scale = torch.load(os.path.join(step_model_path, 'train_set_scale.sav'))
         self.nn_calc = NN_Calc_Ensemble(params_set=fp_params, models_list=model_list, 
                                     scale=scale, elements=elements)
+        self.alpha = alpha
         self.threshold = self.__get_std_threshold(train_db_path)
         self.step_model_path = step_model_path
         self.relax_db_path = relax_db_path
-
+        
 
     def __get_std_threshold(self, train_db_path):
         train_db = connect(train_db_path)
@@ -39,7 +40,7 @@ class Relaxer_Helper():
             atoms.set_calculator(self.nn_calc)
             atoms.get_potential_energy()
             train_nrg_stds.append(atoms.calc.results['energy_std'])
-        return 2.0 * np.max(train_nrg_stds)
+        return self.alpha * np.max(train_nrg_stds)
 
     
     def relax(self, n_step, fmax, to_cal_db_path):

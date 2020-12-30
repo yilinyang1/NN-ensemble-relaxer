@@ -10,7 +10,7 @@ import numpy as np
 
 
 class Ensemble_Relaxer():
-    def __init__(self, db, calculator, jobname, ensemble_size=10):
+    def __init__(self, db, calculator, jobname, ensemble_size=10, alpha=2, nn_params=None):
         self.job_name = jobname
         self.job_path = f'./{self.job_name}'
         self.model_path = os.path.join(self.job_path, 'models')
@@ -28,7 +28,12 @@ class Ensemble_Relaxer():
         self.ensemble_size = ensemble_size
         self.fmax = 0.05  # initial set
         self.fp_params = self.__fp_setter()
+        self.alpha = alpha
         
+        if not nn_params:
+            self.nn_params = {'layer_nodes': [50, 50], 'activations': ['tanh', 'tanh'], 'lr': 1}
+        else:
+            self.nn_params = nn_params
 
     def __get_elements(self, db):
         """
@@ -165,7 +170,7 @@ class Ensemble_Relaxer():
         self.log_file.write(f'Step {self.n_step}: start training \n')
         train_db_path = os.path.join(self.traj_path, f'train-set-step{self.n_step}.db')
         step_model_path = os.path.join(self.model_path, f'model-step{self.n_step}')
-        trainer = Ensemble_Trainer(train_db_path, step_model_path, self.fp_params, self.ensemble_size)
+        trainer = Ensemble_Trainer(train_db_path, step_model_path, self.fp_params, self.ensemble_size, self.nn_params)
         trainer.calculate_fp()
         trainer.train_ensemble()
         print(f'Step {self.n_step}: training done')
@@ -185,7 +190,7 @@ class Ensemble_Relaxer():
         to_cal_db_path = os.path.join(self.traj_path, f'to-cal-step{self.n_step+1}.db')
 
         relaxer = Relaxer_Helper(to_relax_path, train_db_path, step_model_path, self.fp_params, 
-                                self.ensemble_size, self.elements)
+                                self.ensemble_size, self.elements, self.nn_params, self.alpha)
         relaxer.relax(self.n_step, self.fmax, to_cal_db_path)
 
         print(f'Step {self.n_step}: NN relaxation done')

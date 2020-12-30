@@ -1,12 +1,9 @@
-validation: epoch: 0, nrg_mae:  48.968 meV/atom,force_mae:  164.999 meV/AA, max fae:  1049.379 meV/AA 
-validation: epoch: 20, nrg_mae:  0.442 meV/atom,force_mae:  14.188 meV/AA, max fae:  124.654 meV/AA 
-validation: epoch: 40, nrg_mae:  0.288 meV/atom,force_mae:  11.246 meV/AA, max fae:  102.086 meV/AA 
-validation: epoch: 60, nrg_mae:  0.508 meV/atom,force_mae:  9.777 meV/AA, max fae:  64.726 meV/AA 
-validation: epoch: 80, nrg_mae:  0.220 meV/atom,force_mae:  8.881 meV/AA, max fae:  57.118 meV/AA 
-validation: epoch: 100, nrg_mae:  0.286 meV/atom,force_mae:  8.245 meV/AA, max fae:  51.540 meV/AA 
-validation: epoch: 120, nrg_mae:  0.282 meV/atom,force_mae:  7.809 meV/AA, max fae:  49.757 meV/AA 
-validation: epoch: 140, nrg_mae:  0.259 meV/atom,force_mae:  7.514 meV/AA, max fae:  47.341 meV/AA 
-validation: epoch: 160, nrg_mae:  0.218 meV/atom,force_mae:  7.231 meV/AA, max fae:  43.061 meV/AA 
-validation: epoch: 180, nrg_mae:  0.255 meV/atom,force_mae:  7.018 meV/AA, max fae:  43.380 meV/AA 
-validation: epoch: 200, nrg_mae:  0.279 meV/atom,force_mae:  6.879 meV/AA, max fae:  42.536 meV/AA 
-condition satisfied
+validation: epoch: 0, nrg_mae:  66.266 meV/atom,force_mae:  169.095 meV/AA, max fae:  1050.136 meV/AA 
+validation: epoch: 20, nrg_mae:  0.631 meV/atom,force_mae:  12.595 meV/AA, max fae:  128.528 meV/AA 
+validation: epoch: 40, nrg_mae:  0.486 meV/atom,force_mae:  10.804 meV/AA, max fae:  116.999 meV/AA 
+validation: epoch: 60, nrg_mae:  0.449 meV/atom,force_mae:  9.297 meV/AA, max fae:  84.551 meV/AA 
+validation: epoch: 80, nrg_mae:  0.412 meV/atom,force_mae:  8.202 meV/AA, max fae:  62.721 meV/AA 
+validation: epoch: 100, nrg_mae:  0.351 meV/atom,force_mae:  7.712 meV/AA, max fae:  52.886 meV/AA 
+validation: epoch: 120, nrg_mae:  0.156 meV/atom,force_mae:  7.273 meV/AA, max fae:  46.695 meV/AA 
+validation: epoch: 140, nrg_mae:  0.194 meV/atom,force_mae:  6.871 meV/AA, max fae:  45.581 meV/AA 
+condition satisfied

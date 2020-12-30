@@ -6,11 +6,12 @@ import os
 
 
 class Ensemble_Trainer():
-    def __init__(self, train_db_path, model_path, fp_params, ensemble_size):
+    def __init__(self, train_db_path, model_path, fp_params, ensemble_size, nn_params):
         self.model_path = model_path
         self.train_db_path = train_db_path
         self.ensemble_size = ensemble_size
         self.params_set = fp_params
+        self.nn_params = nn_params
         if not os.path.isdir(model_path):
             os.mkdir(model_path)
     
@@ -44,13 +45,12 @@ class Ensemble_Trainer():
         # create model and train
         model_path = os.path.join(self.model_path, f'model-{m}.sav')
         log_name = os.path.join(self.model_path, f'log-{m}.txt')
-        layer_nodes = [50, 50] 
-        activations = ['tanh', 'tanh'] 
-        lr = 1 
-        scale_const = 1
+        layer_nodes = self.nn_params['layer_nodes']
+        activations = self.nn_params['activations']
+        lr = self.nn_params['lr']
 
-        agent = Agent(train_data=train_data, valid_data=valid_data, scale_const=scale_const, model_path=model_path,
-                    layer_nodes=layer_nodes, activation=activations, lr=lr)
+        agent = Agent(train_data=train_data, valid_data=valid_data, model_path=model_path,
+                    layer_nodes=layer_nodes, activation=activations, lr=lr, scale_const=1.0)
         agent.train(log_name=log_name, n_epoch=3000, interupt=True, val_interval=20, is_force=True, 
                     nrg_convg=2, force_convg=7, max_frs_convg=50, nrg_coef=1, force_coef=1)
         return
