@@ -8,10 +8,11 @@ Besides the package to use the NN ensemble relaxer, the datasets for the example
 The overall structure for this repo is:
 
     .
-    ├── build                   # Compiled files (alternatively `dist`)
-    ├── docs                    # Documentation files (alternatively `doc`)
-    ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── test                    # Automated tests (alternatively `spec` or `tests`)
-    ├── tools                   # Tools and utilities
-    ├── LICENSE
-    └── README.md
+    |-- AuPd-nano-test          # Folder to contain the dataset in demonstration example
+    |-- data for manuscript                    # Documentation files (alternatively `doc`)
+    |-- src                     # Source files (alternatively `lib` or `app`)
+    |-- test                    # Automated tests (alternatively `spec` or `tests`)
+    |-- tools                   # Tools and utilities
+    |-- LICENSE
+    |
+    |-- README.md
