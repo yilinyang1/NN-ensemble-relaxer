@@ -1,0 +1,8 @@
+AuPd 25 configs f 0.015
+AgPd 100 configs f 0.05
+vacuum 10
+k 551
+
+AuPd 10 nano configs f 0.05
+vacuum 7
+k 111

@@ -1,1 +1,0 @@
-FROM gcr.io/deepnote-200602/templates/deepnote
