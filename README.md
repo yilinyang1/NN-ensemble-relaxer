@@ -8,11 +8,15 @@ Besides the package to use the NN ensemble relaxer, the datasets for the example
 The overall structure for this repo is:
 
     .
-    |-- AuPd-nano-test          # Folder to contain the dataset in demonstration example
-    |-- data for manuscript                    # Documentation files (alternatively `doc`)
-    |-- src                     # Source files (alternatively `lib` or `app`)
-    |-- test                    # Automated tests (alternatively `spec` or `tests`)
-    |-- tools                   # Tools and utilities
-    |-- LICENSE
-    |
-    |-- README.md
+    ├── AuPd-nano-test           # Folder to store models and relaxation trajs in the demo example
+    ├── data for manuscript     
+    │   ├── Acetylele-hydrogenation-NEB              # Datasets for acetylenen hydrogenation NEB
+    │   ├── Acrolein-AgPd-offline                    # Datasets for Acrolein/AgPd offline relaxation
+    │   ├── Acrolein-AgPd-single-multiple-configs    # Datasets for active learning relaxation for Acrolein/AgPd with single, multiple configurations w/o warmup
+    │   ├── Pt-heptamer-rearrangement-NEB            # Demo code and dataset for Pt-heptamer-rearrangement NEB
+    │   └── more-geometry-optimization-data          # Datasets for AuPd bare slab, more Acrolein/AgPd and AuPd icosahedron relaxation
+    ├── utils                    # Utils files for NN ensemble relaxer, like NN ASE calculator, NN training, active learning relaxation files 
+    ├── AuPd-ico-to-relax-10.db  # ASE database file generated in the demo example
+    ├── README.md                
+    ├── demonstration.ipynb      # Demostration to use the NN ensemble relaxer with an AuPd nanoparticle example
+    └── nn_optimize.py           # NN ensemble relaxer class
