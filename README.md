@@ -20,3 +20,5 @@ The overall structure for this repo is:
     ├── README.md                
     ├── demonstration.ipynb      # Demostration to use the NN ensemble relaxer with an AuPd nanoparticle example
     └── nn_optimize.py           # NN ensemble relaxer class
+
+The C++ code to calculate the symmetry function is copied from https://github.com/MDIL-SNU/SIMPLE-NN
