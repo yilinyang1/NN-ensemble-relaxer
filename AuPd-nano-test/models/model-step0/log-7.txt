@@ -1,8 +1,0 @@
-validation: epoch: 0, nrg_mae:  2.917 meV/atom,force_mae:  123.852 meV/AA, max fae:  695.878 meV/AA 
-validation: epoch: 20, nrg_mae:  0.250 meV/atom,force_mae:  12.614 meV/AA, max fae:  80.241 meV/AA 
-validation: epoch: 40, nrg_mae:  0.583 meV/atom,force_mae:  9.967 meV/AA, max fae:  56.933 meV/AA 
-validation: epoch: 60, nrg_mae:  0.357 meV/atom,force_mae:  8.513 meV/AA, max fae:  46.045 meV/AA 
-validation: epoch: 80, nrg_mae:  0.301 meV/atom,force_mae:  7.788 meV/AA, max fae:  40.256 meV/AA 
-validation: epoch: 100, nrg_mae:  0.293 meV/atom,force_mae:  7.226 meV/AA, max fae:  40.808 meV/AA 
-validation: epoch: 120, nrg_mae:  0.292 meV/atom,force_mae:  6.883 meV/AA, max fae:  40.369 meV/AA 
-condition satisfied
