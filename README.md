@@ -13,6 +13,7 @@ The overall structure for this repo is:
     │   ├── Acetylele-hydrogenation-NEB              # Datasets for acetylenen hydrogenation NEB
     │   ├── Acrolein-AgPd-offline                    # Datasets for Acrolein/AgPd offline relaxation
     │   ├── Acrolein-AgPd-single-multiple-configs    # Datasets for active learning relaxation for Acrolein/AgPd with single, multiple configurations w/o warmup
+    |   ├── Au-slabs-single-config                   # Datasets for active learning relaxation on Au slabs with single configuration
     │   ├── Pt-heptamer-rearrangement-NEB            # Demo code and dataset for Pt-heptamer-rearrangement NEB
     │   └── more-geometry-optimization-data          # Datasets for AuPd bare slab, more Acrolein/AgPd and AuPd icosahedron relaxation
     ├── utils                    # Utils files for NN ensemble relaxer, like NN ASE calculator, NN training, active learning relaxation files 
