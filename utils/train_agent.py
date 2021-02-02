@@ -24,7 +24,7 @@ def predict(model, scale, data, is_force=True):
 		force_pre = - torch.bmm(b_dnrg_dfp, b_dfpdX).reshape(n_clusters, n_atoms, 3)
 		return (nrg_pre_cluster.detach().numpy(), force_pre.detach().numpy())
 	else:
-		return (nrg_pre_cluster.detach().item(), None)
+		return (nrg_pre_cluster.detach().numpy(), None)
 
 
 
