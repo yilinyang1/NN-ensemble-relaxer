@@ -22,7 +22,7 @@ def predict(model, scale, data, is_force=True):
 		b_dnrg_dfp = torch.autograd.grad(nrg_pre_cluster, b_fp, grad_outputs=torch.ones_like(nrg_pre_cluster),
 									create_graph=True, retain_graph=True)[0].reshape(n_clusters, 1, -1)
 		force_pre = - torch.bmm(b_dnrg_dfp, b_dfpdX).reshape(n_clusters, n_atoms, 3)
-		return (nrg_pre_cluster.detach().item(), force_pre.detach().numpy())
+		return (nrg_pre_cluster.detach().numpy(), force_pre.detach().numpy())
 	else:
 		return (nrg_pre_cluster.detach().item(), None)
 
