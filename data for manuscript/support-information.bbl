@@ -1,0 +1,80 @@
+%merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
+%Control: key (0)
+%Control: author (8) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (-1) disabled
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{2}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{http://dx.doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Torres}\ \emph {et~al.}(2019)\citenamefont {Torres},
+  \citenamefont {Jennings}, \citenamefont {Hansen}, \citenamefont {Boes},\ and\
+  \citenamefont {Bligaard}}]{torres-2019-low-scalin}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~A.~G.}\
+  \bibnamefont {Torres}}, \bibinfo {author} {\bibfnamefont {P.~C.}\
+  \bibnamefont {Jennings}}, \bibinfo {author} {\bibfnamefont {M.~H.}\
+  \bibnamefont {Hansen}}, \bibinfo {author} {\bibfnamefont {J.~R.}\
+  \bibnamefont {Boes}}, \ and\ \bibinfo {author} {\bibfnamefont
+  {T.}~\bibnamefont {Bligaard}},\ }\href {\doibase
+  10.1103/physrevlett.122.156001} {\bibfield  {journal} {\bibinfo  {journal}
+  {Physical Review Letters}\ }\textbf {\bibinfo {volume} {122}},\ \bibinfo
+  {pages} {156001} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Koistinen}\ \emph {et~al.}(2017)\citenamefont
+  {Koistinen}, \citenamefont {Dagbjartsd{\'o}ttir}, \citenamefont
+  {{\'A}sgeirsson}, \citenamefont {Vehtari},\ and\ \citenamefont
+  {J{\'o}nsson}}]{koistinen-2017-nudged-elast}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {O.-P.}\ \bibnamefont
+  {Koistinen}}, \bibinfo {author} {\bibfnamefont {F.~B.}\ \bibnamefont
+  {Dagbjartsd{\'o}ttir}}, \bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {{\'A}sgeirsson}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Vehtari}}, \ and\ \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {J{\'o}nsson}},\ }\href {\doibase 10.1063/1.4986787} {\bibfield  {journal}
+  {\bibinfo  {journal} {The Journal of Chemical Physics}\ }\textbf {\bibinfo
+  {volume} {147}},\ \bibinfo {pages} {152720} (\bibinfo {year}
+  {2017})}\BibitemShut {NoStop}%
+\end{thebibliography}%

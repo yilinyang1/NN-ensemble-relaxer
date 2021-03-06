@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{ase.db} \PYG{k+kn}{import} \PYG{n}{connect}
+\PYG{k+kn}{from} \PYG{n+nn}{matplotlib} \PYG{k+kn}{import} \PYG{n}{pyplot} \PYG{k}{as} \PYG{n}{plt}
+
+\PYG{n}{init\PYGZus{}db} \PYG{o}{=} \PYG{n}{connect}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}./Acetylele\PYGZhy{}hydrogenation\PYGZhy{}NEB/Acetylene\PYGZhy{}hydro\PYGZhy{}initial\PYGZhy{}configs.db\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{vasp\PYGZus{}db} \PYG{o}{=} \PYG{n}{connect}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}./Acetylele\PYGZhy{}hydrogenation\PYGZhy{}NEB/Acetylenen\PYGZhy{}hydro\PYGZhy{}vasp\PYGZhy{}cnvg.db\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{nn\PYGZus{}db} \PYG{o}{=} \PYG{n}{connect}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}./Acetylele\PYGZhy{}hydrogenation\PYGZhy{}NEB/Acetylene\PYGZhy{}hydro\PYGZhy{}nn\PYGZhy{}cnvg.db\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{init\PYGZus{}nrgs} \PYG{o}{=} \PYG{p}{[}\PYG{n}{entry}\PYG{o}{.}\PYG{n}{energy} \PYG{k}{for} \PYG{n}{entry} \PYG{o+ow}{in} \PYG{n}{init\PYGZus{}db}\PYG{o}{.}\PYG{n}{select}\PYG{p}{()]}
+\PYG{n}{vasp\PYGZus{}nrgs} \PYG{o}{=} \PYG{p}{[}\PYG{n}{entry}\PYG{o}{.}\PYG{n}{energy} \PYG{k}{for} \PYG{n}{entry} \PYG{o+ow}{in} \PYG{n}{vasp\PYGZus{}db}\PYG{o}{.}\PYG{n}{select}\PYG{p}{()]}
+\PYG{n}{nn\PYGZus{}nrgs} \PYG{o}{=} \PYG{p}{[}\PYG{n}{entry}\PYG{o}{.}\PYG{n}{energy} \PYG{k}{for} \PYG{n}{entry} \PYG{o+ow}{in} \PYG{n}{nn\PYGZus{}db}\PYG{o}{.}\PYG{n}{select}\PYG{p}{()]}
+\PYG{n}{xs} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{vasp\PYGZus{}nrgs}\PYG{p}{))}
+
+\PYG{n}{fig} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{()}
+\PYG{n}{ax} \PYG{o}{=} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{add\PYGZus{}subplot}\PYG{p}{(}\PYG{l+m+mi}{111}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{xs}\PYG{p}{,} \PYG{n}{nn\PYGZus{}nrgs}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}o\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{xs}\PYG{p}{,} \PYG{n}{vasp\PYGZus{}nrgs}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}\PYGZhy{}o\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Reaction coordinate\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}energy (eV)\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}NN ensemble\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Vasp\PYGZsq{}}\PYG{p}{])}
+\PYG{n}{vasp\PYGZus{}act} \PYG{o}{=} \PYG{n}{vasp\PYGZus{}nrgs}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{vasp\PYGZus{}nrgs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{n}{nn\PYGZus{}act} \PYG{o}{=} \PYG{n}{nn\PYGZus{}nrgs}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{nn\PYGZus{}nrgs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{3.5}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{204.6}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Activation energy:\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{3.5}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{204.65}\PYG{p}{,} \PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}NN ensemble: \PYGZob{}round(nn\PYGZus{}act, 3)\PYGZcb{} eV\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{3.5}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{204.7}\PYG{p}{,} \PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}Vasp: \PYGZob{}round(vasp\PYGZus{}act, 3)\PYGZcb{} eV\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}

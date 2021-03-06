@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{nn\PYGZus{}optimize} \PYG{k+kn}{import} \PYG{n}{Ensemble\PYGZus{}Relaxer}
+
+\PYG{c+c1}{\PYGZsh{} NN hyperparameters}
+\PYG{n}{nn\PYGZus{}params} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}layer\PYGZus{}nodes\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+m+mi}{40}\PYG{p}{,} \PYG{l+m+mi}{40}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}activations\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}tanh\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}tanh\PYGZsq{}}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}lr\PYGZsq{}}\PYG{p}{:} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{\PYGZsh{} confidence coeffients used to control to what extent we trust the NN model}
+\PYG{n}{alpha} \PYG{o}{=} \PYG{l+m+mf}{2.0}
+
+\PYG{c+c1}{\PYGZsh{} feed ASE database db, set groud truth calculator,}
+\PYG{c+c1}{\PYGZsh{} specify the folder name to store intermediate models and data}
+\PYG{n}{relaxer} \PYG{o}{=} \PYG{n}{Ensemble\PYGZus{}Relaxer}\PYG{p}{(}\PYG{n}{db}\PYG{o}{=}\PYG{n}{db}\PYG{p}{,} \PYG{n}{calculator}\PYG{o}{=}\PYG{n}{EMT}\PYG{p}{(),} \PYG{n}{jobname}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}AuPd\PYGZhy{}nano\PYGZhy{}test\PYGZsq{}}\PYG{p}{,}
+                           \PYG{n}{ensemble\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{n}{alpha}\PYG{p}{,} \PYG{n}{nn\PYGZus{}params}\PYG{o}{=}\PYG{n}{nn\PYGZus{}params}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} relaxer.run() returns a ase\PYGZhy{}db containing relaxed configurations}
+\PYG{n}{relaxed\PYGZus{}db} \PYG{o}{=} \PYG{n}{relaxer}\PYG{o}{.}\PYG{n}{run}\PYG{p}{(}\PYG{n}{fmax}\PYG{o}{=}\PYG{l+m+mf}{0.05}\PYG{p}{,} \PYG{n}{steps}\PYG{o}{=}\PYG{l+m+mi}{50}\PYG{p}{)}
+\end{Verbatim}

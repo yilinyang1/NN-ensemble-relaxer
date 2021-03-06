@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{ase.db} \PYG{k+kn}{import} \PYG{n}{connect}
+\PYG{k+kn}{from} \PYG{n+nn}{ase.io} \PYG{k+kn}{import} \PYG{n}{write}
+\PYG{k+kn}{from} \PYG{n+nn}{ase.visualize} \PYG{k+kn}{import} \PYG{n}{view}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.image} \PYG{k+kn}{as} \PYG{n+nn}{mpimg}
+\PYG{k+kn}{from} \PYG{n+nn}{matplotlib} \PYG{k+kn}{import} \PYG{n}{pyplot} \PYG{k}{as} \PYG{n}{plt}
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+
+\PYG{n}{path} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}Acrolein\PYGZhy{}AgPd\PYGZhy{}single\PYGZhy{}multiple\PYGZhy{}configs\PYGZsq{}}
+\PYG{n}{data\PYGZus{}path} \PYG{o}{=} \PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}./\PYGZob{}path\PYGZcb{}/initial\PYGZhy{}configs.db\PYGZsq{}}
+\PYG{n}{db} \PYG{o}{=} \PYG{n}{connect}\PYG{p}{(}\PYG{n}{data\PYGZus{}path}\PYG{p}{)}
+\PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}
+\PYG{k}{for} \PYG{n}{entry} \PYG{o+ow}{in} \PYG{n}{db}\PYG{o}{.}\PYG{n}{select}\PYG{p}{():}
+    \PYG{n}{write}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}./\PYGZob{}path\PYGZcb{}/images/image\PYGZhy{}\PYGZob{}i\PYGZcb{}.png\PYGZsq{}}\PYG{p}{,} \PYG{n}{entry}\PYG{o}{.}\PYG{n}{toatoms}\PYG{p}{())}
+    \PYG{n}{i} \PYG{o}{+=} \PYG{l+m+mi}{1}
+
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{axes} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{))}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{):}
+    \PYG{n}{row}\PYG{p}{,} \PYG{n}{col} \PYG{o}{=} \PYG{n}{i} \PYG{o}{//} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{5}
+    \PYG{k}{if} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{13}\PYG{p}{:}
+        \PYG{n}{tmp\PYGZus{}image} \PYG{o}{=} \PYG{n}{mpimg}\PYG{o}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}./\PYGZob{}path\PYGZcb{}/images/image\PYGZhy{}\PYGZob{}i+1\PYGZcb{}.png\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{axes}\PYG{p}{[}\PYG{n}{row}\PYG{p}{][}\PYG{n}{col}\PYG{p}{]}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{tmp\PYGZus{}image}\PYG{p}{)}
+        \PYG{n}{axes}\PYG{p}{[}\PYG{n}{row}\PYG{p}{][}\PYG{n}{col}\PYG{p}{]}\PYG{o}{.}\PYG{n}{set\PYGZus{}title}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}config\PYGZhy{}\PYGZob{}i+1\PYGZcb{}\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{axes}\PYG{p}{[}\PYG{n}{row}\PYG{p}{][}\PYG{n}{col}\PYG{p}{]}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}off\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{fig}\PYG{o}{.}\PYG{n}{tight\PYGZus{}layout}\PYG{p}{()}
+\end{Verbatim}

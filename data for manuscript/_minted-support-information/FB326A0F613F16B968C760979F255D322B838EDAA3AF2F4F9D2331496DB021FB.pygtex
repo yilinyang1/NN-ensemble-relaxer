@@ -1,0 +1,58 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{matplotlib} \PYG{k+kn}{import} \PYG{n}{pyplot} \PYG{k}{as} \PYG{n}{plt}
+\PYG{k+kn}{import} \PYG{n+nn}{pickle}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k+kn}{as} \PYG{n+nn}{np}
+
+\PYG{n}{path} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}more\PYGZhy{}geometry\PYGZhy{}optimization\PYGZhy{}data\PYGZsq{}}
+
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}./\PYGZob{}path\PYGZcb{}/AuPd\PYGZhy{}slab\PYGZhy{}vasp\PYGZhy{}data\PYGZhy{}25.pkl\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}rb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{slab\PYGZus{}vasp\PYGZus{}data} \PYG{o}{=} \PYG{n}{pickle}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}./\PYGZob{}path\PYGZcb{}/AuPd\PYGZhy{}slab\PYGZhy{}nn\PYGZhy{}data\PYGZhy{}25.pkl\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}rb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{slab\PYGZus{}nn\PYGZus{}data} \PYG{o}{=} \PYG{n}{pickle}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}./\PYGZob{}path\PYGZcb{}/Acrolein\PYGZhy{}AgPd\PYGZhy{}vasp\PYGZhy{}data\PYGZhy{}100.pkl\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}rb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{ads\PYGZus{}vasp\PYGZus{}data} \PYG{o}{=} \PYG{n}{pickle}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}./\PYGZob{}path\PYGZcb{}/Acrolein\PYGZhy{}AgPd\PYGZhy{}nn\PYGZhy{}data\PYGZhy{}scratch\PYGZhy{}100.pkl\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}rb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{ads\PYGZus{}nn\PYGZus{}data} \PYG{o}{=} \PYG{n}{pickle}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}./\PYGZob{}path\PYGZcb{}/CO\PYGZhy{}AuPd\PYGZhy{}Ico\PYGZhy{}vasp\PYGZhy{}data\PYGZhy{}10.pkl\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}rb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{nano\PYGZus{}vasp\PYGZus{}data} \PYG{o}{=} \PYG{n}{pickle}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s1}{\PYGZsq{}./\PYGZob{}path\PYGZcb{}/CO\PYGZhy{}AuPd\PYGZhy{}Ico\PYGZhy{}nn\PYGZhy{}data\PYGZhy{}10.pkl\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}rb\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{nano\PYGZus{}nn\PYGZus{}data} \PYG{o}{=} \PYG{n}{pickle}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{n}{ads\PYGZus{}nn\PYGZus{}step\PYGZus{}mean} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{ads\PYGZus{}nn\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}steps\PYGZsq{}}\PYG{p}{])}
+\PYG{n}{ads\PYGZus{}vasp\PYGZus{}step\PYGZus{}mean} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{ads\PYGZus{}vasp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}steps\PYGZsq{}}\PYG{p}{])}
+
+\PYG{n}{slab\PYGZus{}nn\PYGZus{}step\PYGZus{}mean} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{slab\PYGZus{}nn\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}steps\PYGZsq{}}\PYG{p}{])}
+\PYG{n}{slab\PYGZus{}vasp\PYGZus{}step\PYGZus{}mean} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{slab\PYGZus{}vasp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}steps\PYGZsq{}}\PYG{p}{])}
+
+\PYG{n}{nano\PYGZus{}nn\PYGZus{}step\PYGZus{}mean} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{nano\PYGZus{}nn\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}steps\PYGZsq{}}\PYG{p}{])}
+\PYG{n}{nano\PYGZus{}vasp\PYGZus{}step\PYGZus{}mean} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{nano\PYGZus{}vasp\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}steps\PYGZsq{}}\PYG{p}{])}
+
+\PYG{n}{step\PYGZus{}mean} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{([}\PYG{n}{slab\PYGZus{}nn\PYGZus{}step\PYGZus{}mean}\PYG{p}{,} \PYG{n}{slab\PYGZus{}vasp\PYGZus{}step\PYGZus{}mean}\PYG{p}{,} \PYG{n}{nano\PYGZus{}nn\PYGZus{}step\PYGZus{}mean}\PYG{p}{,}
+                      \PYG{n}{nano\PYGZus{}vasp\PYGZus{}step\PYGZus{}mean}\PYG{p}{,} \PYG{n}{ads\PYGZus{}nn\PYGZus{}step\PYGZus{}mean}\PYG{p}{,} \PYG{n}{ads\PYGZus{}vasp\PYGZus{}step\PYGZus{}mean}\PYG{p}{])}
+
+\PYG{n}{nn\PYGZus{}steps} \PYG{o}{=} \PYG{n}{step\PYGZus{}mean}\PYG{p}{[[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{]]}
+\PYG{n}{vasp\PYGZus{}steps} \PYG{o}{=} \PYG{n}{step\PYGZus{}mean}\PYG{p}{[[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{]]}
+\PYG{n}{nn\PYGZus{}xs} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mf}{2.5}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{]}
+\PYG{n}{vasp\PYGZus{}xs} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mf}{1.5}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
+
+\PYG{n}{fig} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{))}
+\PYG{n}{ax} \PYG{o}{=} \PYG{n}{fig}\PYG{o}{.}\PYG{n}{add\PYGZus{}subplot}\PYG{p}{(}\PYG{l+m+mi}{111}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{bar}\PYG{p}{(}\PYG{n}{nn\PYGZus{}xs}\PYG{p}{,} \PYG{n}{nn\PYGZus{}steps}\PYG{p}{,} \PYG{n}{width}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}NN AL\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{bar}\PYG{p}{(}\PYG{n}{vasp\PYGZus{}xs}\PYG{p}{,} \PYG{n}{vasp\PYGZus{}steps}\PYG{p}{,} \PYG{n}{width}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}VASP QN\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}DFT calls\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}yticks}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{160}\PYG{p}{,} \PYG{l+m+mi}{20}\PYG{p}{))}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}xticks}\PYG{p}{([}\PYG{l+m+mf}{1.25}\PYG{p}{,} \PYG{l+m+mf}{2.75}\PYG{p}{,} \PYG{l+m+mf}{4.25}\PYG{p}{])}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{set\PYGZus{}xticklabels}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}AuPd FCC111\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}CO/AuPd Icosahedron\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Acrolein/AgPd FCC111\PYGZsq{}}\PYG{p}{])}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}upper left\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{0.95}\PYG{p}{,} \PYG{l+m+mf}{7.5}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{nn\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]))}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{1.35}\PYG{p}{,} \PYG{n}{vasp\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mf}{1.1}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{vasp\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]))}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{2.4}\PYG{p}{,} \PYG{n}{nn\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mf}{1.1}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{nn\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]))}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{2.9}\PYG{p}{,} \PYG{n}{vasp\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mf}{1.1}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{vasp\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]))}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{3.85}\PYG{p}{,} \PYG{n}{nn\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mf}{1.1}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{nn\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]))}
+\PYG{n}{ax}\PYG{o}{.}\PYG{n}{text}\PYG{p}{(}\PYG{l+m+mf}{4.3}\PYG{p}{,} \PYG{n}{vasp\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mf}{1.1}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{vasp\PYGZus{}steps}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]))}
+\end{Verbatim}
