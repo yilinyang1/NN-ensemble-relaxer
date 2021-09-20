@@ -14,7 +14,6 @@ class Ensemble_Trainer():
         self.nn_params = nn_params
         if not os.path.isdir(model_path):
             os.mkdir(model_path)
-    
 
     def calculate_fp(self):
         train_db = connect(self.train_db_path)
@@ -24,7 +23,6 @@ class Ensemble_Trainer():
         scale = get_scaling(train_data, add_const=1e-10)
         torch.save(scale, scale_file)
         return
-
 
     def train_ensemble(self):
         data_set_path = os.path.join(self.model_path, 'train_set_data.sav')
@@ -39,7 +37,6 @@ class Ensemble_Trainer():
             self.train_nn(m, train_data, valid_data)
 
         return
-
 
     def train_nn(self, m, train_data, valid_data):
         # create model and train

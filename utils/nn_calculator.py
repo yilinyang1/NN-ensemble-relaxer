@@ -29,18 +29,14 @@ def calculate_atoms(atoms, model, scale, params_set, elements, is_force=True):
 
     image_nrg_pre_raw = model(image_fp)
     image_nrg_pre_cluster = torch.sum(image_nrg_pre_raw * image_e_mask)
-    # scale_const = scale['nrg_max'] - scale['nrg_min'] + scale['add_const']
     if is_force:
         image_b_dnrg_dfp = torch.autograd.grad(image_nrg_pre_cluster, image_fp, 
                                                 create_graph=True, retain_graph=True)[0].reshape(1, -1)
         image_force_pre = - torch.mm(image_b_dnrg_dfp, image_dfpdX).reshape(n_atoms, 3)
-        # nrg_pred = (image_nrg_pre_cluster * scale_const + scale['nrg_min']).detach().item()
         nrg_pred = image_nrg_pre_cluster.detach().item()
-        # frs_pred = (image_force_pre * scale_const).detach().numpy()
         frs_pred = image_force_pre.detach().numpy()
         return (nrg_pred, frs_pred)
     else:
-        # nrg_pred = (image_nrg_pre_cluster * scale_const + scale['nrg_min']).detach().item()
         nrg_pred = image_nrg_pre_cluster.detach().item()
         return (nrg_pred, None)
 
@@ -91,7 +87,6 @@ class NN_Calc_Lat_Dist(Calculator):
         self.elements = elements
         self.train_nbrs = train_nbrs  # list of nearest neighbors of training set in 3 dims
 
-
     def calculate(self, atoms=None, properties=['energy'],
                   system_changes=all_changes):
         Calculator.calculate(self, atoms, properties, system_changes)
@@ -124,7 +119,6 @@ class NN_Calc_Lat_Dist(Calculator):
             xyz_dists.append(dim_dist)
         latent_dist = np.mean(xyz_dists, axis=0)  # [N_atom * 1]
         latent_dist_all = xyz_dists
-        # latent_dist = np.zeros(23)
 
         image_fp.requires_grad = True    
         image_dfpdX = image_dfpdX.reshape(n_atoms*n_features, n_atoms*3)
@@ -136,10 +130,7 @@ class NN_Calc_Lat_Dist(Calculator):
                                                 create_graph=True, retain_graph=True)[0].reshape(1, -1)
         
         image_force_pre = - torch.mm(image_b_dnrg_dfp, image_dfpdX).reshape(n_atoms, 3)
-        # scale_const = self.scale['nrg_max'] - self.scale['nrg_min'] + self.scale['add_const']
-        # nrg_pred = (image_nrg_pre_cluster * scale_const + self.scale['nrg_min']).detach().item()
         nrg_pred = image_nrg_pre_cluster.detach().item()
-        # frs_pred = (image_force_pre * scale_const).detach().numpy()
         frs_pred = image_force_pre.detach().numpy()
 
         self.energy = nrg_pred

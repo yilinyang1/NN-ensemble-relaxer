@@ -14,6 +14,7 @@ class DummyMPI(object):
     def bcast(self, data, root=0):
         return data
 
+
 class MPI4PY(object):
     def __init__(self):
         from mpi4py import MPI

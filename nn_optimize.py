@@ -48,7 +48,6 @@ class Ensemble_Relaxer():
 
         return elements
 
-
     def __init_work_place(self, init_db):
         """
         Prepare local folder to store model, trajectories.
@@ -72,7 +71,6 @@ class Ensemble_Relaxer():
         
         return None
 
-
     def __fp_setter(self):
         Gs = [2, 4]
         g2_etas = [0.05, 4.0, 20.0] 
@@ -85,7 +83,6 @@ class Ensemble_Relaxer():
                             g4_etas=g4_etas, g4_zetas=g4_zetas, g4_lambdas=g4_lambdas)
         return params_set
     
-
     def __get_ground_truth(self):
         """
         Calculate the groud truth energetics for uncertain configurations.
@@ -107,7 +104,6 @@ class Ensemble_Relaxer():
         print(f'Step {self.n_step}: groud truth data calculation done')
         self.log_file.write(f'Step {self.n_step}: groud truth data calculation done \n')
         return None
-
 
     def __update_training_data(self):
         """
@@ -161,7 +157,6 @@ class Ensemble_Relaxer():
         else:
             return False
 
-
     def __train_NN(self):
         """
         Retrain NN ensemble using updated training data
@@ -177,7 +172,6 @@ class Ensemble_Relaxer():
         self.log_file.write(f'Step {self.n_step}: training done\n')
         return
     
-
     def __relax_NN(self):
         """
         Relax configurations using NN
@@ -197,7 +191,6 @@ class Ensemble_Relaxer():
         self.log_file.write(f'Step {self.n_step}: NN relaxation done \n')
         return
 
-    
     def __collect_configs(self):
         """
         Collect final configurations after relaxation
@@ -231,7 +224,6 @@ class Ensemble_Relaxer():
         for traj in config_steps:
             final_db.write(traj[-1])
         return final_db
-
 
     def run(self, fmax=0.05, steps=None):
         self.fmax = fmax

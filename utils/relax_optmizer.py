@@ -51,7 +51,6 @@ class Gradient_Descent():
 
 		if self.traj_path:
 			traj.write(self.atoms)
-
 		if self.log_path:
 			log.close()
 		if self.traj_path:
@@ -63,7 +62,6 @@ class Gradient_Descent_Ensemble():
 	Gradient descent with monitoring latent distance,
 	should work with NN calculator with ensemble
 	"""
-
 	def __init__(self, atoms, threshold=0.03, lr=1, log_path=None, traj_path=None):
 		self.lr = lr
 		self.atoms = atoms

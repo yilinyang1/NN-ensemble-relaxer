@@ -27,7 +27,6 @@ def predict(model, scale, data, is_force=True):
 		return (nrg_pre_cluster.detach().numpy(), None)
 
 
-
 def get_scaling(train_data, add_const=1e-10):
 	"""
 	add_const: constant added into demominator when scaling the energy and force
@@ -107,7 +106,6 @@ class Agent(object):
 
 		self.model_path = model_path
 
-
 	def train(self, log_name, n_epoch=1000, interupt=True, val_interval=10, is_force=True, nrg_convg=1, force_convg=5, max_frs_convg=25, nrg_coef=1, force_coef=25):
 		"""
 		interupt: bool, if interupt training process when the nrg_convg and force_convg criteria satisfied
@@ -169,7 +167,6 @@ class Agent(object):
 			with open(log_name, 'a') as file:
 				file.write(f'test: epoch: -1, nrg_mae: {test_nrg_mae*1000} meV/atom, force_mae: {test_force_mae*1000} meV/AA\r\n')
 
-
 		for epo in range(n_epoch):
 			total_train = train_b_fp.size(0)
 			batch_size = train_b_fp.size(0)
@@ -205,7 +202,6 @@ class Agent(object):
 					return train_loss
 
 				self.optimizer.step(closure)
-
 
 			if epo % val_interval == 0:
 				valid_nrg_pre_raw = self.model(valid_b_fp)
@@ -253,7 +249,6 @@ class Agent(object):
 					return True, valid_nrg_mae, valid_force_mae, valid_force_max
 		return False, 'NA', 'NA', 'NA'
 
-
 	def test(self, is_force):
 		self.load_model(self.model_path)
 		test_data = self.test_data
@@ -286,10 +281,8 @@ class Agent(object):
 
 		return nrg_pre_cluster, force_pre, nrg_mae, force_mae
 
-
 	def save_model(self):
 		torch.save(self.model.state_dict(), self.model_path)
 
 	def load_model(self, model_path):
 		self.model.load_state_dict(torch.load(model_path))
-

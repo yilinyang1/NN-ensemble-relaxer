@@ -5,6 +5,7 @@ from .mpiclass import DummyMPI, MPI4PY
 import torch
 from time import time
 
+
 def _read_params(filename):
 	params_i = list()
 	params_d = list()
@@ -18,6 +19,7 @@ def _read_params(filename):
 	params_d = np.asarray(params_d, dtype=np.float64, order='C')
 
 	return params_i, params_d
+
 
 def calculate_fp(atoms, elements, params_set):
 	"""
@@ -109,7 +111,6 @@ def calculate_fp(atoms, elements, params_set):
 			else:
 				assert errno == 0
 
-		
 		if type_num[jtem] != 0:
 			res['x'][jtem] = np.array(comm.gather(x, root=0))
 			res['dx'][jtem] = np.array(comm.gather(dx, root=0))
@@ -127,7 +128,6 @@ def calculate_fp(atoms, elements, params_set):
 	return res
 
 
-
 def set_sym(elements, Gs, cutoff, g2_etas=None, g2_Rses=None, g4_etas=None, g4_zetas=None, g4_lambdas=None):
 	"""
 	specify symmetry function parameters for each element
@@ -140,7 +140,6 @@ def set_sym(elements, Gs, cutoff, g2_etas=None, g2_Rses=None, g4_etas=None, g4_z
 						for G2: eta, Rs, dummy
 						for G4 and G5: eta, zeta, lambda
 	"""
-
 	# specify all elements in the system
 	params_set = dict()
 	ratio = 36.0  # difference ratio from the AMP parameters
@@ -168,7 +167,6 @@ def set_sym(elements, Gs, cutoff, g2_etas=None, g2_Rses=None, g4_etas=None, g4_z
 											 for g4_eta in g4_etas
 											 for g4_zeta in g4_zetas
 											 for g4_lambda in g4_lambdas]
-
 
 		params_set[item]['i'] = np.array(int_params, dtype=np.intc)
 		params_set[item]['d'] = np.array(double_params, dtype=np.float64)
@@ -216,10 +214,8 @@ def db_to_fp(db, params_set):
 		b_f[idx][:len(image), :] = torch.FloatTensor(tmp_frs)
 		idx += 1
 
-
 	data = {'N_atoms': N_atoms, 'b_fp': b_fp, 'b_dfpdX': b_dfpdX, 
 			'b_e': b_e, 'b_f': b_f, 'b_e_mask': b_e_mask}
-
 	return data
 
 
@@ -324,7 +320,6 @@ def cal_fp_only(atoms, elements, params_set):
 	return res
 
 
-
 def batch_to_fp(batch, params_set):
 	N_max = 0
 	N = len(batch)
@@ -359,12 +354,10 @@ def batch_to_fp(batch, params_set):
 		b_f[idx][:len(image), :] = torch.FloatTensor(image.get_forces())
 		idx += 1
 
-
 	data = {'N_atoms': N_atoms, 'b_fp': b_fp, 'b_dfpdX': b_dfpdX, 
 			'b_e': b_e, 'b_f': b_f, 'b_e_mask': b_e_mask}
 
 	return data
-
 
 
 def conditional_cal_fp_only(atoms, elements, params_set, conditions):
@@ -466,4 +459,3 @@ def conditional_cal_fp_only(atoms, elements, params_set, conditions):
 			# res['dx'][jtem] = np.zeros([0, params_set[jtem]['num'], atom_num, 3])
 
 	return res
-

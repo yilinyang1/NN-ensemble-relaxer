@@ -11,7 +11,6 @@ from ase.io.trajectory import Trajectory
 import torch
 
 
-
 class Relaxer_Helper():
     def __init__(self, relax_db_path, train_db_path, step_model_path, fp_params, ensemble_size, elements, nn_params, alpha):
         layer_nodes = nn_params['layer_nodes']
@@ -31,7 +30,6 @@ class Relaxer_Helper():
         self.step_model_path = step_model_path
         self.relax_db_path = relax_db_path
         
-
     def __get_std_threshold(self, train_db_path):
         train_db = connect(train_db_path)
         train_nrg_stds = []
@@ -42,7 +40,6 @@ class Relaxer_Helper():
             train_nrg_stds.append(atoms.calc.results['energy_std'])
         return self.alpha * np.max(train_nrg_stds)
 
-    
     def relax(self, n_step, fmax, to_cal_db_path):
         relax_dir_path = os.path.join(self.step_model_path, 'nn-relax-trajs')
         if not os.path.isdir(relax_dir_path):
@@ -69,7 +66,6 @@ class Relaxer_Helper():
                                     maxstep=0.04, nrg_std=self.threshold)
                 dyn.run(fmax=fmax-0.02, steps=50)
 
-        
         to_cal_db = connect(to_cal_db_path)
         for c in range(len(to_relax_images)):
             relax_traj_file = os.path.join(relax_dir_path, f'atoms-{c}-traj.traj')
