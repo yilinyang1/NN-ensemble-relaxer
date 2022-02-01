@@ -1,6 +1,6 @@
 from ase.calculators.calculator import (Calculator, all_changes, PropertyNotImplementedError)
 from .fp_calculator import set_sym, calculate_fp, db_to_fp
-from ase.calculators.emt import EMT
+from ase.calculators.singlepoint import SinglePointCalculator as SPC
 import torch
 import numpy as np
 from copy import deepcopy
@@ -56,7 +56,7 @@ class NN_Calc_Ensemble(Calculator):
         Calculator.calculate(self, atoms, properties, system_changes)
 
         temp_atoms = self.atoms.copy()
-        temp_atoms.set_calculator(EMT())
+        temp_atoms.set_calculator(SPC(temp_atoms, energy=0.0, forces=np.zeros([len(temp_atoms), 3])))
         
         # calculate energy and forces
         nrg_preds = []
@@ -92,7 +92,7 @@ class NN_Calc_Lat_Dist(Calculator):
         Calculator.calculate(self, atoms, properties, system_changes)
 
         temp_atoms = self.atoms.copy()
-        temp_atoms.set_calculator(EMT())
+        temp_atoms.set_calculator(SPC(temp_atoms, energy=0.0, forces=np.zeros([len(temp_atoms), 3])))
         
         # calculate fingerprints and preprocessing
         image_data = calculate_fp(temp_atoms, self.elements, self.params_set)
@@ -184,7 +184,7 @@ class NN_Calc_single_model(Calculator):
         Calculator.calculate(self, atoms, properties, system_changes)
 
         temp_atoms = self.atoms.copy()
-        temp_atoms.set_calculator(EMT())
+        temp_atoms.set_calculator(SPC(temp_atoms, energy=0.0, forces=np.zeros([len(temp_atoms), 3])))
         nrg_pred, frs_pred = calculate_atoms(temp_atoms, self.model, self.scale, self.parameters, self.elements)
         
         self.energy = nrg_pred
